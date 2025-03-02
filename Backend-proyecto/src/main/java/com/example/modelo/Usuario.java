@@ -13,7 +13,6 @@ public class Usuario {
 	String vigenciaLicencia;
 	String correo;
 	int telefono;
-	String password;
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -31,7 +30,6 @@ public class Usuario {
 		this.vigenciaLicencia = vigenciaLicencia;
 		this.correo = correo;
 		this.telefono = telefono;
-		this.password = password;
 	}
 
 
@@ -89,11 +87,6 @@ public class Usuario {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	
 
 }
