@@ -1,77 +1,123 @@
 package com.example.modelo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "alquiler")
 public class Alquiler {
-	Long idAlquiler;
-	int identificacion;
-	int idVehiculo;
-	int idAdmin;
-	float valorAlquiler;
-	String estado;
-	String fechaInicio;
-	String fechaEntrega;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "idAlquiler")
+	private long idAlquiler;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "identificacion", referencedColumnName = "identificacion")
+	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name = "idVehiculo", referencedColumnName = "idVehiculo")
+	private Vehiculo idvehiculo;
+	
+	@ManyToOne
+	@JoinColumn(name = "idAdmin", referencedColumnName = "idAdmin")
+	private Administrador idamin;
+	
+	@Column (name = "valorAlquiler", length = 20, nullable= false)
+	private float valoralquiler;
+	
+	@Column  ( name = "estado", length = 20, nullable = false)
+	private String estatus;
+	
+	@Column  ( name = "fechaInicio", length = 20, nullable = false)
+	private String fechai;
+	
+	@Column  ( name = "fechaEntrega", length = 20, nullable = false)
+	private String fechae;
+
 	public Alquiler() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Alquiler(Long idAlquiler, int identificacion, int idVehiculo, int idAdmin, float valorAlquiler,
-			String estado, String fechaInicio, String fechaEntrega) {
+
+	public Alquiler(long idAlquiler, Usuario usuario, Vehiculo idvehiculo, Administrador idamin, float valoralquiler,
+			String estatus, String fechai, String fechae) {
 		super();
 		this.idAlquiler = idAlquiler;
-		this.identificacion = identificacion;
-		this.idVehiculo = idVehiculo;
-		this.idAdmin = idAdmin;
-		this.valorAlquiler = valorAlquiler;
-		this.estado = estado;
-		this.fechaInicio = fechaInicio;
-		this.fechaEntrega = fechaEntrega;
-	}
-	public Long getIdAlquiler() {
-		return idAlquiler;
-	}
-	public void setIdAlquiler(Long idAlquiler) {
-		this.idAlquiler = idAlquiler;
-	}
-	public int getIdentificacion() {
-		return identificacion;
-	}
-	public void setIdentificacion(int identificacion) {
-		this.identificacion = identificacion;
-	}
-	public int getIdVehiculo() {
-		return idVehiculo;
-	}
-	public void setIdVehiculo(int idVehiculo) {
-		this.idVehiculo = idVehiculo;
-	}
-	public int getIdAdmin() {
-		return idAdmin;
-	}
-	public void setIdAdmin(int idAdmin) {
-		this.idAdmin = idAdmin;
-	}
-	public float getValorAlquiler() {
-		return valorAlquiler;
-	}
-	public void setValorAlquiler(float valorAlquiler) {
-		this.valorAlquiler = valorAlquiler;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-	public String getFechaInicio() {
-		return fechaInicio;
-	}
-	public void setFechaInicio(String fechaInicio) {
-		this.fechaInicio = fechaInicio;
-	}
-	public String getFechaEntrega() {
-		return fechaEntrega;
-	}
-	public void setFechaEntrega(String fechaEntrega) {
-		this.fechaEntrega = fechaEntrega;
+		this.usuario = usuario;
+		this.idvehiculo = idvehiculo;
+		this.idamin = idamin;
+		this.valoralquiler = valoralquiler;
+		this.estatus = estatus;
+		this.fechai = fechai;
+		this.fechae = fechae;
 	}
 
+	public long getIdAlquiler() {
+		return idAlquiler;
+	}
+
+	public void setIdAlquiler(long idAlquiler) {
+		this.idAlquiler = idAlquiler;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Vehiculo getIdvehiculo() {
+		return idvehiculo;
+	}
+
+	public void setIdvehiculo(Vehiculo idvehiculo) {
+		this.idvehiculo = idvehiculo;
+	}
+
+	public Administrador getIdamin() {
+		return idamin;
+	}
+
+	public void setIdamin(Administrador idamin) {
+		this.idamin = idamin;
+	}
+
+	public float getValoralquiler() {
+		return valoralquiler;
+	}
+
+	public void setValoralquiler(float valoralquiler) {
+		this.valoralquiler = valoralquiler;
+	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
+	public String getFechai() {
+		return fechai;
+	}
+
+	public void setFechai(String fechai) {
+		this.fechai = fechai;
+	}
+
+	public String getFechae() {
+		return fechae;
+	}
+
+	public void setFechae(String fechae) {
+		this.fechae = fechae;
+	}
+	
+	
+	
 }
