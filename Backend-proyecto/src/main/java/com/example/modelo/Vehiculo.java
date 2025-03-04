@@ -1,11 +1,28 @@
 package com.example.modelo;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name= "vehiculo")
 public class Vehiculo {
-	Long idVehiculo;
-	String tipoDeVehiculo;
-	String estado;
-	String Color;
-	String placa;
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column (name ="idVehiculo")
+	private long idVehiculo;
+	
+	@Column(name= "tipoDeVehiculo")
+	private String tipoDeVehiculo;
+	
+	
+	@Column (name= "estado")
+	private String estado;
+
+	@Column (name = "Color")
+	private String Color;
+	
+	@Column (name = "placa")
+	private String placa;
+	
 	public Vehiculo() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -2,17 +2,40 @@ package com.example.modelo;
 
 import java.sql.Date;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "usuario")
 public class Usuario {
 	
-	Long identificacion;
-	String nombre;
-	String apellido;
-	int edad;
-	Date fechaexpedicionlicencia;
-	String categoriaLicencia;
-	String vigenciaLicencia;
-	String correo;
-	int telefono;
+	@Id
+	@Column(name = "identificacion")
+	private long identificacion;
+	
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "apellido")
+	private String apellido;
+	
+	@Column(name = "edad")
+	private int edad;
+	
+	@Column(name = "fechaexpedicionlicencia")
+	private Date fechaexpedicionlicencia;
+	
+	@Column(name = "categoriaLicencia")
+	private String categoriaLicencia;
+	
+	@Column(name = "vigenciaLicencia")
+	private String vigenciaLicencia;
+	
+	@Column(name = "correo")
+	private String correo;
+	
+	@Column(name = "telefono")
+	private int telefono;
+	
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub

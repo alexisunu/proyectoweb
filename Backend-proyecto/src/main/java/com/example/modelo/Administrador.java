@@ -1,10 +1,24 @@
 package com.example.modelo;
 
+import jakarta.persistence.*;
+
+
+
+@Entity
+@Table(name= "admin")
 public class Administrador {
 	
-	Long idAdmin;
-	String usuario;
-	String contraseña;
+
+	@Id
+	@Column(name = "idAdmin")
+	private long idAdmin;
+	
+	@Column(name = "usuario" , length = 50, nullable = false)
+	private String usuario;
+	
+	@Column(name = "contraseña" , length = 50, nullable = false)
+	private String contraseña;
+	
 	public Administrador() {
 		super();
 		// TODO Auto-generated constructor stub
