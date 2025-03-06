@@ -1,15 +1,16 @@
-package com.example.modelo;
+package com.example.demo.modelo;
 
 import jakarta.persistence.*;
 
 
 
 @Entity
-@Table(name= "admin")
+@Table(name= "administrador")
 public class Administrador {
 	
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column(name = "idAdmin")
 	private long idAdmin;
 	
@@ -23,9 +24,8 @@ public class Administrador {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Administrador(Long idAdmin, String usuario, String contraseña) {
+	public Administrador( String usuario, String contraseña) {
 		super();
-		this.idAdmin = idAdmin;
 		this.usuario = usuario;
 		this.contraseña = contraseña;
 	}

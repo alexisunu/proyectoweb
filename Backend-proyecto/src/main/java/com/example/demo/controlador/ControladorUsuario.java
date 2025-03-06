@@ -1,4 +1,4 @@
-package com.example.controlador;
+package com.example.demo.controlador;
 
 public class ControladorUsuario {
 
