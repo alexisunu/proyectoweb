@@ -1,38 +1,40 @@
-package com.example.modelo;
+package com.example.demo.modelo;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name= "vehiculo")
 public class Vehiculo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@Column (name ="idVehiculo")
 	private long idVehiculo;
 	
-	@Column(name= "tipoDeVehiculo")
-	private String tipoDeVehiculo;
+	@Column(name= "tipoVehiculo")
+	private String tipoVehiculo;
 	
 	
 	@Column (name= "estado")
 	private String estado;
 
-	@Column (name = "Color")
-	private String Color;
+	@Column (name = "color")
+	private String color;
 	
-	@Column (name = "placa")
+	@Column (name = "placa", unique=true)
 	private String placa;
+	
+	
 	
 	public Vehiculo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Vehiculo(Long idVehiculo, String tipoDeVehiculo, String estado, String color, String placa) {
+	public Vehiculo(String tipoVehiculo, String estado, String color, String placa) {
 		super();
-		this.idVehiculo = idVehiculo;
-		this.tipoDeVehiculo = tipoDeVehiculo;
+		this.tipoVehiculo = tipoVehiculo;
 		this.estado = estado;
-		Color = color;
+		this.color = color;
 		this.placa = placa;
 	}
 	public Long getIdVehiculo() {
@@ -42,10 +44,10 @@ public class Vehiculo {
 		this.idVehiculo = idVehiculo;
 	}
 	public String getTipoDeVehiculo() {
-		return tipoDeVehiculo;
+		return tipoVehiculo;
 	}
 	public void setTipoDeVehiculo(String tipoDeVehiculo) {
-		this.tipoDeVehiculo = tipoDeVehiculo;
+		this.tipoVehiculo = tipoDeVehiculo;
 	}
 	public String getEstado() {
 		return estado;
@@ -54,10 +56,10 @@ public class Vehiculo {
 		this.estado = estado;
 	}
 	public String getColor() {
-		return Color;
+		return color;
 	}
 	public void setColor(String color) {
-		Color = color;
+		this.color = color;
 	}
 	public String getPlaca() {
 		return placa;

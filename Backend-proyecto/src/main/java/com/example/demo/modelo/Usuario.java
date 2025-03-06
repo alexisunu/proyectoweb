@@ -1,4 +1,4 @@
-package com.example.modelo;
+package com.example.demo.modelo;
 
 import java.sql.Date;
 
@@ -12,17 +12,11 @@ public class Usuario {
 	@Column(name = "identificacion")
 	private long identificacion;
 	
-	@Column(name = "nombre")
-	private String nombre;
-	
-	@Column(name = "apellido")
-	private String apellido;
-	
-	@Column(name = "edad")
-	private int edad;
+	@Column(name = "nombrecompleto")
+	private String nombreCompleto;
 	
 	@Column(name = "fechaexpedicionlicencia")
-	private Date fechaexpedicionlicencia;
+	private Date fechaExpedicionLicencia;
 	
 	@Column(name = "categoriaLicencia")
 	private String categoriaLicencia;
@@ -36,80 +30,83 @@ public class Usuario {
 	@Column(name = "telefono")
 	private int telefono;
 	
+	@OneToOne(mappedBy ="identificacion",cascade = CascadeType.ALL )
+	private LoginUsuario loginusuario;
+	
+	
 	public Usuario() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Usuario(Long identificacion, String nombre, String apellido, int edad, Date fechaexpedicionlicencia,
+	public Usuario(Long identificacion, String nombreCompleto,  Date fechaExpedicionLicencia,
 			String categoriaLicencia, String vigenciaLicencia, String correo, int telefono, String password) {
 		super();
 		this.identificacion = identificacion;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.edad = edad;
-		this.fechaexpedicionlicencia = fechaexpedicionlicencia;
+		this.nombreCompleto = nombreCompleto;
+		this.fechaExpedicionLicencia = fechaExpedicionLicencia;
 		this.categoriaLicencia = categoriaLicencia;
 		this.vigenciaLicencia = vigenciaLicencia;
 		this.correo = correo;
 		this.telefono = telefono;
 	}
 
-
-	public Long getIdentificacion() {
+	public long getIdentificacion() {
 		return identificacion;
 	}
-	public void setIdentificacion(Long identificacion) {
+
+	public void setIdentificacion(long identificacion) {
 		this.identificacion = identificacion;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public String getNombreCompleto() {
+		return nombreCompleto;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
-	public String getApellido() {
-		return apellido;
+
+	public Date getFechaExpedicionLicencia() {
+		return fechaExpedicionLicencia;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+
+	public void setFechaExpedicionLicencia(Date fechaExpedicionLicencia) {
+		this.fechaExpedicionLicencia = fechaExpedicionLicencia;
 	}
-	public int getEdad() {
-		return edad;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-	public Date getFechaexpedicionlicencia() {
-		return fechaexpedicionlicencia;
-	}
-	public void setFechaexpedicionlicencia(Date fechaexpedicionlicencia) {
-		this.fechaexpedicionlicencia = fechaexpedicionlicencia;
-	}
+
 	public String getCategoriaLicencia() {
 		return categoriaLicencia;
 	}
+
 	public void setCategoriaLicencia(String categoriaLicencia) {
 		this.categoriaLicencia = categoriaLicencia;
 	}
+
 	public String getVigenciaLicencia() {
 		return vigenciaLicencia;
 	}
+
 	public void setVigenciaLicencia(String vigenciaLicencia) {
 		this.vigenciaLicencia = vigenciaLicencia;
 	}
+
 	public String getCorreo() {
 		return correo;
 	}
+
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
+
 	public int getTelefono() {
 		return telefono;
 	}
+
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-	
+
+
 
 }
