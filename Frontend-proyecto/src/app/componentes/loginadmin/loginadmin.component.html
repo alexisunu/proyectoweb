@@ -1,0 +1,13 @@
+<h1>Login Administrador</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="comprobarLoginadmin()">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" formControlName="username" required>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
