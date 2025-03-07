@@ -14,26 +14,19 @@ public class Vehiculo {
 	@Column(name= "tipoVehiculo")
 	private String tipoVehiculo;
 	
-	
-	@Column (name= "estado")
-	private String estado;
-
 	@Column (name = "color")
 	private String color;
 	
 	@Column (name = "placa", unique=true)
 	private String placa;
 	
-	
-	
 	public Vehiculo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Vehiculo(String tipoVehiculo, String estado, String color, String placa) {
+	public Vehiculo(String tipoVehiculo, String color, String placa) {
 		super();
 		this.tipoVehiculo = tipoVehiculo;
-		this.estado = estado;
 		this.color = color;
 		this.placa = placa;
 	}
@@ -49,12 +42,8 @@ public class Vehiculo {
 	public void setTipoDeVehiculo(String tipoDeVehiculo) {
 		this.tipoVehiculo = tipoDeVehiculo;
 	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+	
+	
 	public String getColor() {
 		return color;
 	}

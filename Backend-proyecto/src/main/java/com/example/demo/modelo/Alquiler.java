@@ -2,6 +2,7 @@ package com.example.demo.modelo;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "alquiler")
 public class Alquiler {
@@ -12,15 +13,15 @@ public class Alquiler {
 	private long idAlquiler;
 	
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "identificacion", referencedColumnName = "identificacion")
 	private Usuario identificacion;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "idVehiculo", referencedColumnName = "idVehiculo")
 	private Vehiculo idVehiculo;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "idAdmin", referencedColumnName = "idAdmin")
 	private Administrador idAdmin;
 	
