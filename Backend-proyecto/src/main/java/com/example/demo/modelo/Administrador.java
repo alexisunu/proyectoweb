@@ -48,4 +48,6 @@ public class Administrador {
 		this.contraseña = contraseña;
 	}
 	
+
+
 }
