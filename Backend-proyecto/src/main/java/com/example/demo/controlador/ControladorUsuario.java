@@ -8,14 +8,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.modelo.LoginUsuario;
 import com.example.demo.modelo.Usuario;
+import com.example.demo.repositorio.LoginUsuariorepositorio;
 import com.example.demo.repositorio.Usuariorepositorio;
 
 @RestController
 @RequestMapping("/usuarios")
 public class ControladorUsuario {
-
-    @Autowired
+	
+	@Autowired
+	private LoginUsuariorepositorio repositorioL;
+    
+	@Autowired
     private Usuariorepositorio repositorioU;
 
     // ✅ Endpoint para actualizar o guardar usuario
@@ -27,7 +32,8 @@ public class ControladorUsuario {
             @RequestParam String categoriaLicencia,
             @RequestParam String vigenciaLicencia,
             @RequestParam String correo,
-            @RequestParam int telefono) throws ParseException {
+            @RequestParam int telefono,
+            @RequestParam String password) throws ParseException{
 
          
 
@@ -36,10 +42,15 @@ public class ControladorUsuario {
         
         Usuario usu = new Usuario(identificacion, nombrecompleto,fechaExpedicion,categoriaLicencia,vigenciaLicencia,correo,telefono);
 
-
+        LoginUsuario log = new LoginUsuario(usu, password);
+        
+        repositorioL.save(log);
+        
       
         return repositorioU.save(usu);
     }
+    
+    
 
     // ✅ Endpoint para obtener todos los usuarios
     @GetMapping("/listarUsuarios")
