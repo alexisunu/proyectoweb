@@ -1,1 +1,36 @@
-<p>busqueda-tipo works!</p>
+<h1>Busqueda de Vehiculos disponibles</h1>
+
+<h2>Aca podras realizar la busqueda de los vehiculo disponibles por el tipo de vehiculo , por favor selecciona el tipo de vehiculo
+    que deseas buscar.
+</h2>
+
+<div class="container">
+    <label for="tipo">Tipo de Vehiculo</label>
+    <select [(ngModel)]="tipoVehiculo" (change)="buscarVehiculosDisponibles()">
+        <option value="automovil">Automovil</option>
+        <option value="camioneta">Camioneta</option>
+        <option value="campero">Campero</option>
+        <option value="microbus">Microbus</option>
+        <option value="motocicleta">Motocicleta</option>
+    </select>
+</div>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>placa</th>
+                <th>color</th>
+                <th>Tipo DE VEHICULO</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vehiculo of vehiculosDiponibles" >
+                <td>{{vehiculo.placa}}</td>
+                <td>{{vehiculo.color}}</td>
+                <td>{{vehiculo.tipoVehiculo}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
