@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Vehiculo {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name ="idVehiculo")
 	private long idVehiculo;
 	

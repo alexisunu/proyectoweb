@@ -10,7 +10,7 @@ public class Administrador {
 	
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idAdmin")
 	private long idAdmin;
 	
