@@ -1,4 +1,4 @@
-package com.example.demo.modelo;
+ package com.example.demo.modelo;
 
 import java.sql.Date;
 
