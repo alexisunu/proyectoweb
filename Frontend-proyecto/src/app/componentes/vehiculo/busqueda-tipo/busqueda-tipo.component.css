@@ -1,0 +1,21 @@
+.container {
+    display: flex; /* Esto es opcional, ajusta según tus necesidades */
+    justify-content: center; /* Centra horizontalmente el contenido */
+  }
+  
+  /* Estilo para el select */
+select { 
+    width: 300px; /* Ajusta el ancho según tus necesidades */
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+}

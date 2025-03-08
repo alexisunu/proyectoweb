@@ -1,6 +1,9 @@
-package com.example.demo.modelo;
+ package com.example.demo.modelo;
 
-import java.sql.Date;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 
@@ -15,6 +18,9 @@ public class Usuario {
 	@Column(name = "nombrecompleto")
 	private String nombreCompleto;
 	
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern= "yyy-MM-dd")
 	@Column(name = "fechaexpedicionlicencia")
 	private Date fechaExpedicionLicencia;
 	
@@ -27,20 +33,20 @@ public class Usuario {
 	@Column(name = "correo")
 	private String correo;
 	
-	@Column(name = "telefono")
+	@Column(name = "telefono", columnDefinition=" varchar(20)")
 	private int telefono;
 	
 	@OneToOne(mappedBy ="identificacion",cascade = CascadeType.ALL )
 	private LoginUsuario loginusuario;
 	
 	
+	
 	public Usuario() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
+
 	public Usuario(Long identificacion, String nombreCompleto,  Date fechaExpedicionLicencia,
-			String categoriaLicencia, String vigenciaLicencia, String correo, int telefono, String password) {
+			String categoriaLicencia, String vigenciaLicencia, String correo, int telefono) {
 		super();
 		this.identificacion = identificacion;
 		this.nombreCompleto = nombreCompleto;
