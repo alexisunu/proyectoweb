@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Alquiler {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "idAlquiler")
 	private long idAlquiler;
 	

@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class LoginUsuario {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name= "idlogin")
 	private Long idLogin;
 	

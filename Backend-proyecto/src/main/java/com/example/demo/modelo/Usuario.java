@@ -27,7 +27,7 @@ public class Usuario {
 	@Column(name = "correo")
 	private String correo;
 	
-	@Column(name = "telefono")
+	@Column(name = "telefono", columnDefinition=" varchar(20)")
 	private int telefono;
 	
 	@OneToOne(mappedBy ="identificacion",cascade = CascadeType.ALL )
@@ -40,7 +40,7 @@ public class Usuario {
 	}
 	
 	public Usuario(Long identificacion, String nombreCompleto,  Date fechaExpedicionLicencia,
-			String categoriaLicencia, String vigenciaLicencia, String correo, int telefono, String password) {
+			String categoriaLicencia, String vigenciaLicencia, String correo, int telefono) {
 		super();
 		this.identificacion = identificacion;
 		this.nombreCompleto = nombreCompleto;
