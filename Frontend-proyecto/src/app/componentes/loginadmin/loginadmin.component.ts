@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { LoginadminService } from '../../servicios/loginadmin/loginadmin.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-loginadmin',
@@ -12,7 +13,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginadminComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private fb: FormBuilder,private loginadminServicio: LoginadminService) { }
+
+  constructor(private router:Router, private fb: FormBuilder,private loginadminServicio: LoginadminService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,6 +30,13 @@ export class LoginadminComponent implements OnInit {
       this.loginadminServicio.getLoginAdmin(formData.username, formData.password)
       .subscribe((res) => {
         console.log(res);
+        if (res) {
+            console.log('Login correcto');
+            // Redirigir al componente de administrador
+            this.router.navigate(['/admin']);
+        } else {
+          console.log('Login incorrecto');
+        }
       });
     }
   }

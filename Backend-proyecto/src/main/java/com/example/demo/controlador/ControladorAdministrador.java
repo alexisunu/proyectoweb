@@ -1,9 +1,12 @@
-package com.example.demo.controlador;
+ package com.example.demo.controlador;
+
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,19 +24,18 @@ public class ControladorAdministrador {
 	
 	
 	@PostMapping("/login")
-	public boolean Login(@RequestParam Administrador admi)
+	public boolean Login(@RequestBody Map<String, String> objecttype)
 	{
 		
-		Administrador admin = (Administrador) repositorioAdmin.findByUsuario(admi.getUsuario());
+		String usuario = objecttype.get("usuario");
+		String password = objecttype.get("password");
 		
-		if (admin == null) {
-			return false;
+		Administrador admin = (Administrador) repositorioAdmin.findByUsuario(usuario);
+		
+		if (admin != null && password.equals(admin.getContraseña())) {
+			return true;
 		}
-		else {
-			if(admi.getContraseña().equals(admin.getContraseña())) {
-				return true;
-			}
-		}
+		
 		return false;
 		
 	}
