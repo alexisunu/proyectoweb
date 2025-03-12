@@ -4,10 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.demo.modelo.Administrador;
 import com.example.demo.modelo.LoginUsuario;
 import com.example.demo.modelo.Usuario;
 import com.example.demo.repositorio.LoginUsuariorepositorio;
@@ -40,15 +42,21 @@ public class ControladorUsuario {
         SimpleDateFormat formato = new SimpleDateFormat("yyy-MM-dd");
         Date fechaExpedicion = formato.parse(fechaExpedicionLicencia);
         
+        
         Usuario usu = new Usuario(identificacion, nombrecompleto,fechaExpedicion,categoriaLicencia,vigenciaLicencia,correo,telefono);
+        
+        repositorioU.save(usu);
 
         LoginUsuario log = new LoginUsuario(usu, password);
         
         repositorioL.save(log);
         
       
-        return repositorioU.save(usu);
+        return usu;
     }
+    
+    
+   
     
     
 

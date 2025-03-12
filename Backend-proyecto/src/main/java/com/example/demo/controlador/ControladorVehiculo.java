@@ -26,4 +26,7 @@ public class ControladorVehiculo {
     	String tipo = objecttype.get("tipo");   	
         return repositorioV.findVehiculosDisponibles(tipo);
     }
+    
+    
+    
 }
