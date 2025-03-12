@@ -5,7 +5,7 @@ import { Router } from 'express';
 @Component({
   selector: 'app-nav-admin',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './nav-admin.component.html',
   styleUrl: './nav-admin.component.css'
 })
