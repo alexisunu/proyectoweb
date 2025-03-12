@@ -4,6 +4,7 @@ import { BusquedaTipoComponent } from './componentes/vehiculo/busqueda-tipo/busq
 import { BusquedaPlacaComponent } from './componentes/alquiler/busqueda-placa/busqueda-placa.component';
 import { BusquedaNumeroComponent } from './componentes/alquiler/busqueda-numero/busqueda-numero.component';
 import { AdministradorComponent } from './componentes/administrador/administrador.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {path:"loginadmin", component: LoginadminComponent},
