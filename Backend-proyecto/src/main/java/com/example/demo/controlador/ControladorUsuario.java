@@ -1,15 +1,15 @@
 package com.example.demo.controlador;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.modelo.Administrador;
 import com.example.demo.modelo.LoginUsuario;
 import com.example.demo.modelo.Usuario;
 import com.example.demo.repositorio.LoginUsuariorepositorio;
@@ -25,7 +25,7 @@ public class ControladorUsuario {
 	@Autowired
     private Usuariorepositorio repositorioU;
 
-    // ✅ Endpoint para actualizar o guardar usuario
+   
     @PostMapping("/guardarU")
     public Usuario guardarUsuario(
             @RequestParam long identificacion,
