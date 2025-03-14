@@ -34,7 +34,7 @@ public class Usuario {
 	private String correo;
 	
 	@Column(name = "telefono", columnDefinition=" varchar(20)")
-	private int telefono;
+	private String telefono;
 	
 	@OneToOne(mappedBy ="identificacion",cascade = CascadeType.ALL )
 	private LoginUsuario loginusuario;
@@ -46,7 +46,7 @@ public class Usuario {
 	}
 
 	public Usuario(Long identificacion, String nombreCompleto,  Date fechaExpedicionLicencia,
-			String categoriaLicencia, String vigenciaLicencia, String correo, int telefono) {
+			String categoriaLicencia, String vigenciaLicencia, String correo, String telefono) {
 		super();
 		this.identificacion = identificacion;
 		this.nombreCompleto = nombreCompleto;
@@ -105,11 +105,11 @@ public class Usuario {
 		this.correo = correo;
 	}
 
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

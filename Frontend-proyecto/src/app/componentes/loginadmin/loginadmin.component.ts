@@ -41,10 +41,10 @@ export class LoginadminComponent implements OnInit {
             this.router.navigate(['/admin']);
 
 
-
-
         } else {
-          console.log('Login incorrecto');
+            console.log('Login incorrecto');
+            alert('Inicio de sesión incorrecto');
+            this.loginForm.reset();
         }
       });
     }
