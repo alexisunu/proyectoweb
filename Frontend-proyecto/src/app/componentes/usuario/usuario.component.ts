@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Usuario } from '../../entidades/usuario/usuario';
+import { UsuarioService } from '../../servicios/usuario/usuario.service';
 
 @Component({
   selector: 'app-usuario',
@@ -12,16 +13,7 @@ export class UsuarioComponent {
   usuario: Usuario = new Usuario();
   mensaje: string = '';
 
-  constructor(private usuarioService: UsuarioService) {}
+  constructor(private usuarioService:UsuarioService) {}
 
-  registrar() {
-    this.usuarioService.registrarUsuario(this.usuario).subscribe(
-      (respuesta) => {
-        this.mensaje = 'Usuario registrado exitosamente.';
-      },
-      (error) => {
-        this.mensaje = 'Error al registrar usuario.';
-      }
-    );
-
+ 
 }

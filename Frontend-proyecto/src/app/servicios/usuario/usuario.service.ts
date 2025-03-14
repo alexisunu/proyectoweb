@@ -1,21 +1,45 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Usuario } from '../../entidades/usuario/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  private apiUrl = 'http://localhost:8080/login'; 
+  apiUrl = 'http://localhost:8080/usuarios'; 
 
   constructor(private http: HttpClient) {}
 
-  login(usuario: string, password: string): Observable<boolean> {
-    return this.http.post<boolean>(`${this.apiUrl}/loginU`, { usuario, password });
+  
+  registrarUsuario(
+    identificacion: number, 
+    nombrecompleto: string, 
+    fechaExpedicionLicencia: string,
+    categoriaLicencia: string, 
+    vigenciaLicencia: string, 
+    correo: string, 
+    telefono: string, 
+    password: string
+  ): Observable<Usuario> {
+    // Se arma el objeto usuario
+    const usuario = {
+      identificacion,
+      nombrecompleto,
+      fechaExpedicionLicencia,
+      categoriaLicencia,
+      vigenciaLicencia,
+      correo,
+      telefono
+    };
+    console.log(usuario);
+  
+    // Se configura el parámetro extra
+    const params = new HttpParams().set('password', password);
+  
+    // Se envía el objeto en el body y el password en los parámetros
+    return this.http.post<Usuario>(`${this.apiUrl}/guardarU`, usuario, { params });
   }
-
-  registrarUsuario(datos: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/registro`, datos);
-  }
+  
 }

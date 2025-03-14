@@ -1,4 +1,6 @@
+import { Usuario } from "../usuario/usuario";
+
 export class LoginUsuario {
-    usuario: string;
+    usuario: Usuario;
     password: string;
 }

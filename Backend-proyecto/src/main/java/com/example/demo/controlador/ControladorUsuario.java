@@ -16,6 +16,7 @@ import com.example.demo.repositorio.Usuariorepositorio;
 
 @RestController
 @RequestMapping("/usuarios")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ControladorUsuario {
 	
 	@Autowired
@@ -25,34 +26,26 @@ public class ControladorUsuario {
     private Usuariorepositorio repositorioU;
 
    
-    @PostMapping("/guardarU")
-    public Usuario guardarUsuario(
-            @RequestParam Long identificacion,
-            @RequestParam String nombrecompleto,
-            @RequestParam String fechaExpedicionLicencia,
-            @RequestParam String categoriaLicencia,
-            @RequestParam String vigenciaLicencia,
-            @RequestParam String correo,
-            @RequestParam String telefono,
-            @RequestParam String password) throws ParseException{
+	@PostMapping("/guardarU")
+	public Usuario guardarUsuario(
+	        @RequestBody Usuario usuario, 
+	        @RequestParam String password) throws ParseException {
 
-         
+	    // Si necesitas convertir la fecha, asegúrate de que el objeto Usuario tenga el campo adecuado o haz la conversión aquí
+	    //SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+	    //Date fechaExpedicion = formato.parse(usuario.getFechaExpedicionLicencia());
+	    //usuario.setFechaExpedicionLicencia(fechaExpedicion);
 
-        SimpleDateFormat formato = new SimpleDateFormat("yyy-MM-dd");
-        Date fechaExpedicion = formato.parse(fechaExpedicionLicencia);
-        
-        
-        Usuario usu = new Usuario(identificacion, nombrecompleto,fechaExpedicion,categoriaLicencia,vigenciaLicencia,correo,telefono);
-        
-        repositorioU.save(usu);
+	    // Guarda el usuario
+	    repositorioU.save(usuario);
 
-        LoginUsuario log = new LoginUsuario(usu, password);
-        
-        repositorioL.save(log);
-        
-      
-        return usu;
-    }
+	    // Procesa el password, por ejemplo, creando un objeto de login
+	    LoginUsuario log = new LoginUsuario(usuario, password);
+	    repositorioL.save(log);
+
+	    return usuario;
+	}
+
     
     
    
