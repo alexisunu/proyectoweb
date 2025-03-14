@@ -1,5 +1,9 @@
 package com.example.demo.modelo;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.*;
 
 
@@ -31,11 +35,15 @@ public class Alquiler {
 	@Column  ( name = "estado", length = 20, nullable = false)
 	private String estado;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="MM/dd/yy")
 	@Column  ( name = "fechaInicio", length = 20, nullable = false)
-	private String fechaInicio;
+	private Date fechaInicio;
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="MM/dd/yy")
 	@Column  ( name = "fechaEntrega", length = 20, nullable = false)
-	private String fechaEntrega;
+	private Date fechaEntrega;
 
 	public Alquiler() {
 		super();
@@ -43,7 +51,7 @@ public class Alquiler {
 	}
 
 	public Alquiler(Usuario identificacion, Vehiculo idVehiculo, Administrador idAdmin, float valorAlquiler,
-			String estado, String fechaInicio, String fechaEntrega) {
+			String estado, Date fechaInicio, Date fechaEntrega) {
 		super();
 		this.identificacion = identificacion;
 		this.idVehiculo = idVehiculo;
@@ -102,19 +110,19 @@ public class Alquiler {
 		this.estado = estado;
 	}
 
-	public String getFechaInicio() {
+	public Date getFechaInicio() {
 		return fechaInicio;
 	}
 
-	public void setFechaInicio(String fechaInicio) {
+	public void setFechaInicio(Date fechaInicio) {
 		this.fechaInicio = fechaInicio;
 	}
 
-	public String getFechaEntrega() {
+	public Date getFechaEntrega() {
 		return fechaEntrega;
 	}
 
-	public void setFechaEntrega(String fechaEntrega) {
+	public void setFechaEntrega(Date fechaEntrega) {
 		this.fechaEntrega = fechaEntrega;
 	}
 

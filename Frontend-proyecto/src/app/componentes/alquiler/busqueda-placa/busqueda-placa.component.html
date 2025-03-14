@@ -1,2 +1,64 @@
 <app-nav-admin></app-nav-admin>
-<p>busqueda-placa works!</p>
+<h1>Entregar el vehiculo</h1>
+
+<div class="container">
+    <label for="Ingresa">Numero de placa</label>
+    <input type="text" id="placa" name="placa" [(ngModel)]="placa" required>
+    
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" (click)="buscarAlquiler()">
+        Buscar
+      </button>
+</div>
+
+<table *ngIf="mostrarTabla" class="container">
+    <thead>
+        <tr>
+            <th>Id Alquiler</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de fin</th>
+            <th>Usuario</th>
+            <th>Estado</th>
+            <th>Entregar</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{alquiler.idAlquiler}}</td>
+            <td>{{alquiler.fechaInicio}}</td>
+            <td>{{alquiler.fechaEntrega}}</td>
+            <td>{{alquiler.identificacion}}</td>
+            <td>{{alquiler.estado}}</td>
+            <td><button (click)="cambiarEstado()">Entregar</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">{{ rentalFound ? 'Alquiler Encontrado' : 'Alquiler No Encontrado' }}</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+            <p *ngIf="rentalFound">
+                Se encontró el alquiler del vehículo con la placa: {{ placa }}
+              </p>
+              <p *ngIf="!rentalFound">
+                No se encontró el alquiler para la placa: {{ placa }}
+              </p>
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>

@@ -28,13 +28,13 @@ public class ControladorUsuario {
    
     @PostMapping("/guardarU")
     public Usuario guardarUsuario(
-            @RequestParam long identificacion,
+            @RequestParam Long identificacion,
             @RequestParam String nombrecompleto,
             @RequestParam String fechaExpedicionLicencia,
             @RequestParam String categoriaLicencia,
             @RequestParam String vigenciaLicencia,
             @RequestParam String correo,
-            @RequestParam int telefono,
+            @RequestParam String telefono,
             @RequestParam String password) throws ParseException{
 
          
