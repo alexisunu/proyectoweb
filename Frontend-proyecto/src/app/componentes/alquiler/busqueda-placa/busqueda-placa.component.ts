@@ -41,6 +41,7 @@ export class BusquedaPlacaComponent implements OnInit {
           this.rentalFound = true;
           this.alquiler = data;
           this.mostrarTabla = true;
+          console.log(this.alquiler);
         }
         
       
