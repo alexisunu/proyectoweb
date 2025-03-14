@@ -1,6 +1,8 @@
+import { Usuario } from "../usuario/usuario";
+
 export class Alquiler {
     idAlquiler:number;
-    identificacion:number;
+    identificacion:Usuario;
     idAdmin:number;
     valorAlquiler:number;
     estado:String;
