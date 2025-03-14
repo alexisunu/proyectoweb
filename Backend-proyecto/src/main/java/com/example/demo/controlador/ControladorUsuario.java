@@ -1,9 +1,11 @@
 package com.example.demo.controlador;
 
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +25,7 @@ public class ControladorUsuario {
 	@Autowired
     private Usuariorepositorio repositorioU;
 
-    // ✅ Endpoint para actualizar o guardar usuario
+   
     @PostMapping("/guardarU")
     public Usuario guardarUsuario(
             @RequestParam long identificacion,
@@ -40,15 +42,21 @@ public class ControladorUsuario {
         SimpleDateFormat formato = new SimpleDateFormat("yyy-MM-dd");
         Date fechaExpedicion = formato.parse(fechaExpedicionLicencia);
         
+        
         Usuario usu = new Usuario(identificacion, nombrecompleto,fechaExpedicion,categoriaLicencia,vigenciaLicencia,correo,telefono);
+        
+        repositorioU.save(usu);
 
         LoginUsuario log = new LoginUsuario(usu, password);
         
         repositorioL.save(log);
         
       
-        return repositorioU.save(usu);
+        return usu;
     }
+    
+    
+   
     
     
 
