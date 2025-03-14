@@ -1,2 +1,33 @@
 <app-nav-admin></app-nav-admin>
-<p>busqueda-numero works!</p>
+
+<h1>Devolver Vehiculo</h1>
+
+<label for="numeroAlquiler">Ingresa de identficacion del numero de alquiler</label>
+<input type="text"  id="numeroAlquiler" [(ngModel)]="numero" name="numeroAlquiler" required>
+<button (click)="BuscarAlquiler()">Buscar</button>
+
+<table class="container">
+    <thead>
+        <tr>
+            <th>Numero de Alquiler</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Costo</th>
+            <th>diasadicionales</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>{{alquiler.idAlquiler}}</td>
+            <td>{{alquiler.fechaInicio}}</td>
+            <td>{{alquiler.fechaEntrega}}</td>
+            <td>{{alquiler.valorAlquiler}}</td>
+            <td>{{diasAdicionales}}</td>
+            <td>
+            <button (click)="devolverVehiculo()">Devolver</button>
+            </td>
+        </tr>
+    </tbody> 
+</table>
