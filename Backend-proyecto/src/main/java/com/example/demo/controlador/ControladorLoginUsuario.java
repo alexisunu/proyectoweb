@@ -3,6 +3,7 @@ package com.example.demo.controlador;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.example.demo.repositorio.Usuariorepositorio;
 
 @RestController
 @RequestMapping("/login")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class ControladorLoginUsuario {
 	 @Autowired
 	 private LoginUsuariorepositorio repositorioL;

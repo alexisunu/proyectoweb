@@ -6,10 +6,10 @@ import { Usuario } from '../../entidades/usuario/usuario';
   providedIn: 'root'
 })
 export class LoginUsuarioService {
-  bdURL= 'http://localhost:8080/usuario/login/loginU';
+  bdURL= 'http://localhost:8080/login/loginU';
 
   constructor(private HttpClient: HttpClient) { }
-  LoginUsuario(usuario: Usuario, password: string){
+  LoginUsuario(usuario: String, password: string){
     return this.HttpClient.post(this.bdURL, {usuario, password});
   }
 }
