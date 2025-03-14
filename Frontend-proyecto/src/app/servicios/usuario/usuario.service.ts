@@ -15,7 +15,7 @@ export class UsuarioService {
   
   registrarUsuario(
     identificacion: number, 
-    nombrecompleto: string, 
+    nombreCompleto: string, 
     fechaExpedicionLicencia: string,
     categoriaLicencia: string, 
     vigenciaLicencia: string, 
@@ -26,7 +26,7 @@ export class UsuarioService {
     // Se arma el objeto usuario
     const usuario = {
       identificacion,
-      nombrecompleto,
+      nombreCompleto,
       fechaExpedicionLicencia,
       categoriaLicencia,
       vigenciaLicencia,
