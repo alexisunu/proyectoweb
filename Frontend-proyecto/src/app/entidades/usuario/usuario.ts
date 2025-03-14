@@ -1,6 +1,6 @@
 export class Usuario {
     identificacion: Number;
-    nombrecompleto: string;
+    nombreCompleto: string;
     fechaexpedicionlicencia: Date;
     categorialicencia: string;
     vigencialicencia: string;

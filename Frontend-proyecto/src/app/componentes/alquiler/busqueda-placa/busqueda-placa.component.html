@@ -16,6 +16,7 @@
             <th>Id Alquiler</th>
             <th>Fecha de inicio</th>
             <th>Fecha de fin</th>
+            <th>Identificacion Usuario</th>
             <th>Usuario</th>
             <th>Estado</th>
             <th>Entregar</th>
@@ -26,7 +27,8 @@
             <td>{{alquiler.idAlquiler}}</td>
             <td>{{alquiler.fechaInicio}}</td>
             <td>{{alquiler.fechaEntrega}}</td>
-            <td>{{alquiler.identificacion}}</td>
+            <td>{{alquiler.identificacion.identificacion}}</td>
+            <td>{{alquiler.identificacion.nombreCompleto}}</td>
             <td>{{alquiler.estado}}</td>
             <td><button (click)="cambiarEstado()">Entregar</button></td>
         </tr>
