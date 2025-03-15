@@ -1,0 +1,88 @@
+/* Estilos generales */
+body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+      
+      /* Estilos para párrafos */
+      p {
+        line-height: 1.6;
+        margin: 20px;
+      }
+      
+      /* Estilo especial para el párrafo de inicio */
+      .inicio {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 30px;
+        font-weight: bold;
+      }
+      
+      /* Sección de Coches en Venta */
+      #venta {
+        padding: 40px 20px;
+        background-color: #fff;
+      }
+      
+      #venta h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2rem;
+        color: #2a2a2a;
+      }
+      
+      /* Grid de autos */
+      .car-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin: 0 auto;
+        max-width: 1200px;
+      }
+      
+      /* Estilos individuales para cada auto */
+      .car {
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        padding: 20px;
+        width: 300px;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .car img {
+        width: 100%;
+        border-radius: 10px;
+      }
+      
+      .car h3 {
+        margin: 15px 0 10px;
+        font-size: 1.5rem;
+        color: #333;
+      }
+      
+      .car p {
+        font-size: 1rem;
+        color: #555;
+      }
+      
+      /* Reseteo básico */
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      /* El footer simplemente se muestra debajo de todo el contenido */
+      footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+        /* Importante: no usar position: fixed o absolute */
+      }
+      

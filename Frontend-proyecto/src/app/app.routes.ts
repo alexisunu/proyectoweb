@@ -8,14 +8,18 @@ import { AppComponent } from './app.component';
 import { RegistroUsuarioComponent } from './componentes/registro-usuario/registro-usuario.component';
 import { LoginUsuarioComponent } from './componentes/login-usuario/login-usuario.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { InicioComponent } from './componentes/inicio/inicio.component';
+import { BuscarTipoUsuarioComponent } from './componentes/vehiculo/buscar-tipo-usuario/buscar-tipo-usuario.component';
 
 export const routes: Routes = [
     {path:"loginadmin", component: LoginadminComponent},
     {path:"vehiculosAdmin", component: BusquedaTipoComponent },
+    {path:"vehiculoUsuario", component:BuscarTipoUsuarioComponent},
     {path:"AlquilerPlaca", component: BusquedaPlacaComponent },
     {path:"AlquilerNumero", component: BusquedaNumeroComponent},
     {path:"admin", component: AdministradorComponent},
     {path:"registrousuario", component:RegistroUsuarioComponent},
     {path:"loginusuario", component:LoginUsuarioComponent},
-    {path:"usuario", component:UsuarioComponent}
+    {path:"usuario", component:UsuarioComponent},
+    {path:"inicio", component:InicioComponent}
 ];
