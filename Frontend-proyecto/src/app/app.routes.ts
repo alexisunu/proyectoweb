@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { RegistroUsuarioComponent } from './componentes/registro-usuario/registro-usuario.component';
 import { LoginUsuarioComponent } from './componentes/login-usuario/login-usuario.component';
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { InicioComponent } from './componentes/inicio/inicio.component';
 
 export const routes: Routes = [
     {path:"loginadmin", component: LoginadminComponent},
@@ -17,5 +18,6 @@ export const routes: Routes = [
     {path:"admin", component: AdministradorComponent},
     {path:"registrousuario", component:RegistroUsuarioComponent},
     {path:"loginusuario", component:LoginUsuarioComponent},
-    {path:"usuario", component:UsuarioComponent}
+    {path:"usuario", component:UsuarioComponent},
+    {path:"inicio", component:InicioComponent}
 ];
