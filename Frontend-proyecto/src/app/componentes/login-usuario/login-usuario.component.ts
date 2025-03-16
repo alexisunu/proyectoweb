@@ -9,10 +9,11 @@ import { SessionserviceService } from '../../servicios/sessionservice/sessionser
 @Component({
   selector: 'app-login-usuario',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login-usuario.component.html',
-  styleUrl: './login-usuario.component.css'
+  styleUrls: ['./login-usuario.component.css'] // <-- con 's' al final y array
 })
+
 export class LoginUsuarioComponent implements OnInit {
 
 

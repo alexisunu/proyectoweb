@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../../entidades/usuario/usuario';
 import { UsuarioService } from '../../servicios/usuario/usuario.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -34,16 +33,30 @@ export class RegistroUsuarioComponent implements OnInit {
   registrarUsuario(){
     if(this.registroForm.valid){
       const usuario = this.registroForm.value;
-      this.usuarioService.registrarUsuario(usuario.Identificacion, usuario.nombreCompleto,
-         usuario.fechaExpedicionLicencia, usuario.categoriaLicencia,usuario.vigenciaLicencia,
-        usuario.correo, usuario.telefono, usuario.password).subscribe(
-        (data) => {
+      this.usuarioService.registrarUsuario(
+        usuario.Identificacion, 
+        usuario.nombreCompleto,
+        usuario.fechaExpedicionLicencia, 
+        usuario.categoriaLicencia,
+        usuario.vigenciaLicencia,
+        usuario.correo, 
+        usuario.telefono, 
+        usuario.password
+      ).subscribe({
+        next: (data) => {
           if(data != null){
             console.log(data);
+            // Redirecciona a la página de login
+            this.router.navigate(['/loginusuario']);
           }
+        },
+        error: (error) => {
+          console.error('Error en el registro: no se registra', error);
+          // Aquí podrías manejar el error, mostrar un mensaje, etc.
         }
-      );
+      });
     }
-    
   }
-}
+  
+    }
+  
