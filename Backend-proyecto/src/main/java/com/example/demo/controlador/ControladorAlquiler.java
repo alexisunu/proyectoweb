@@ -1,5 +1,9 @@
 package com.example.demo.controlador;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.modelo.Alquiler;
+import com.example.demo.modelo.Precios;
+import com.example.demo.modelo.Usuario;
 import com.example.demo.modelo.Vehiculo;
+import com.example.demo.modelo.Administrador;
+import com.example.demo.repositorio.Administradorrepositorio;
 import com.example.demo.repositorio.Alquilerrepositorio;
+import com.example.demo.repositorio.Preciosrepositorio;
+import com.example.demo.repositorio.Usuariorepositorio;
 import com.example.demo.repositorio.Vehiculorepositorio;
 
 @RestController
@@ -27,6 +37,60 @@ public class ControladorAlquiler{
 		
 		@Autowired
 		private Vehiculorepositorio repositorioV;
+		
+		@Autowired
+		private Usuariorepositorio repositorioU;
+		
+		@Autowired
+		private Administradorrepositorio repositorioAd;
+		
+		@Autowired
+		private Preciosrepositorio repositorioP;
+		
+		
+		@PostMapping("/crearalquiler")
+		public Alquiler crearAlquiler(@RequestParam String identificacion, 
+									 @RequestParam String placa,
+									 @RequestParam String fechaInicio,
+									 @RequestParam String fechaEntrega) throws ParseException {
+		
+			Long id = Long.parseLong(identificacion);
+			
+			Usuario usuario = repositorioU.findById(id).orElse(null);
+			
+			Vehiculo vehiculo = repositorioV.findByplaca(placa);
+			
+			Administrador a = repositorioAd.findById((long) 2).orElse(null);
+			
+			
+			
+			if(usuario != null && vehiculo!= null) {
+				
+				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+				Date fechaInici = sdf.parse(fechaInicio);
+				Date fechaEntreg = sdf.parse(fechaEntrega);
+			    long diffInMillies = fechaEntreg.getTime() - fechaInici.getTime();
+			    long dias = diffInMillies / (1000 * 60 * 60 * 24);
+			    
+			    String tipo = vehiculo.getTipoDeVehiculo();
+			    Precios precioTipo = repositorioP.findBytipoVehiculo(tipo);
+			    float precio = precioTipo.getPrecio();
+			    float valorTotal = precio * dias;
+			    
+			    String estado = "En espera";
+				Alquiler alquilerNuevo = new Alquiler(usuario,vehiculo,a,valorTotal,estado,fechaInici,fechaEntreg);
+				
+				repositorioA.save(alquilerNuevo);
+				
+				
+				return alquilerNuevo;
+			}
+			
+			
+			
+			return null;
+			
+		}
 		
 		@GetMapping("/entregarVehiculo")
 		public Alquiler Entregarvehiculo (@RequestParam String placa ) {

@@ -27,4 +27,8 @@ export class AlquilerService {
   deleteAlquiler(alquiler:Alquiler):Observable<boolean>{
     return this.httpClient.delete<boolean>(`${this.url}/borraralquiler`, { body: alquiler });
   }
+
+  crearAlquiler(placa:string, identificacion:string, fechaInicio:string, fechaEntrega:string):Observable<Alquiler>{
+    return this.httpClient.post<Alquiler>(`${this.url}/crearalquiler`,null, { params: { identificacion, placa,  fechaInicio, fechaEntrega } });
+  }
 }

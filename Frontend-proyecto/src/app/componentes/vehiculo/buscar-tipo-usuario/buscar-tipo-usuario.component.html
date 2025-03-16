@@ -32,10 +32,64 @@
             <tr *ngFor="let vehiculo of vehiculosDiponibles" >
                 <td>{{vehiculo.placa}}</td>
                 <td>{{vehiculo.color}}</td>
-                <td><button>Alquilar</button></td>
+                <td><button data-bs-toggle="modal" data-bs-target="#myModal" (click)="Alquilar(vehiculo.placa)">Alquilar</button></td>
             </tr>
         </tbody>
     </table>
 </div>
 
+
+<!-- Modal para ingresar fechas del alquiler -->
+<div class="modal fade" id="myModal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Ingresar Fechas del Alquiler</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <br>
+  
+        <!-- Modal body -->
+       <!-- Campo para la fecha de inicio del alquiler -->
+<div class="mb-3" class="container">
+    <label for="startDate" class="form-label">Fecha de Inicio del Alquiler</label>
+    <input 
+      type="date" 
+      id="startDate" 
+      class="form-control" 
+      [(ngModel)]="startDate" 
+      [attr.min]="today" 
+      (change)="actualizarFechaMinima()"
+    >
+  </div>
+
+  <br>
+  
+  <!-- Campo para la fecha de entrega del alquiler -->
+  <div class="mb-3" class="container">
+    <label for="endDate" class="form-label">Fecha de Entrega del Alquiler</label>
+    <input 
+      type="date" 
+      id="endDate" 
+      class="form-control" 
+      [(ngModel)]="endDate" 
+      [attr.min]="startDate"
+    >
+  </div>
+
+  <br>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="realizarAlquiler()">Guardar</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
 
