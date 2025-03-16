@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { LoginUsuarioService } from '../../servicios/loginUsuario/login-usuario.service';
 import { NavInicioComponent } from '../nav/nav-inicio/nav-inicio.component';
+import { SessionserviceService } from '../../servicios/sessionservice/sessionservice.service';
 
 @Component({
   selector: 'app-login-usuario',
@@ -16,7 +17,7 @@ export class LoginUsuarioComponent implements OnInit {
 
 
 
-  constructor(private router:Router, private fb: FormBuilder, private loginUsuarioServicio:LoginUsuarioService) { }
+  constructor(private sessionService: SessionserviceService, private router:Router, private fb: FormBuilder, private loginUsuarioServicio:LoginUsuarioService) { }
 
   nav: NavInicioComponent = new NavInicioComponent();
   loginForm: FormGroup;
@@ -40,6 +41,8 @@ export class LoginUsuarioComponent implements OnInit {
               this.nav.ocultar();
               // Redirigir al componente de administrador
               this.router.navigate(['/usuario']);
+              this.sessionService.setUserId(formData.username);
+              console.log(this.sessionService.getUserId())
   
   
           } else {
