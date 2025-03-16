@@ -1,4 +1,4 @@
-import { LoginUsuario } from './login-usuario';
+import { LoginUsuario } from './login-usuario.ts';
 
 describe('LoginUsuario', () => {
   it('should create an instance', () => {
