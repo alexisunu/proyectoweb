@@ -43,6 +43,8 @@ export class LoginUsuarioComponent implements OnInit {
               localStorage.setItem('userId', formData.username);
               // Redirigir al componente de administrador
               this.router.navigate(['/usuario']);
+              this.sessionService.setUserId(formData.username);
+              console.log(this.sessionService.getUserId())
   
   
           } else {
