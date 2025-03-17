@@ -199,7 +199,7 @@ export class BuscarTipoUsuarioComponent {
   
     // Descarga el PDF
     doc.save('alquiler.pdf');
-  }
+
   get startIndex() {
     return (this.currentPage - 1) * this.itemsPerPage;
   }
@@ -218,6 +218,7 @@ export class BuscarTipoUsuarioComponent {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
+  }
   }
   
 
