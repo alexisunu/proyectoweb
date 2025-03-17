@@ -1,7 +1,7 @@
 export class Vehiculo {
 
     idVehiculo:number;
-    tipoVehiculo:string;
+    tipoDeVehiculo:string;
     color:string;
     placa:string;
 }
