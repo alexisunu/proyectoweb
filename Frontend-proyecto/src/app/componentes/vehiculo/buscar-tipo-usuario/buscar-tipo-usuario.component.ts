@@ -200,7 +200,25 @@ export class BuscarTipoUsuarioComponent {
     // Descarga el PDF
     doc.save('alquiler.pdf');
   }
-  
+  get startIndex() {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+
+  get endIndex() {
+    return this.startIndex + this.itemsPerPage;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
   
 
 }
