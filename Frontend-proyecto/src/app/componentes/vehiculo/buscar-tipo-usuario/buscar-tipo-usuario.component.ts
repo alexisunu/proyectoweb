@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {format} from 'date-fns';
+import { format } from 'date-fns';
 import { NavUsusarioComponent } from '../../nav/nav-ususario/nav-ususario.component';
 import { CommonModule } from '@angular/common';
 import { Vehiculo } from '../../../entidades/vehiculo/vehiculo';
@@ -10,74 +10,79 @@ import { SessionserviceService } from '../../../servicios/sessionservice/session
 import { AlquilerService } from '../../../servicios/alquiler/alquiler.service';
 import { Alquiler } from '../../../entidades/alquiler/alquiler';
 
-
 @Component({
   selector: 'app-buscar-tipo-usuario',
   standalone: true,
   templateUrl: './buscar-tipo-usuario.component.html',
   styleUrl: './buscar-tipo-usuario.component.css',
-  imports: [NavUsusarioComponent,CommonModule,FormsModule]
+  imports: [NavUsusarioComponent, CommonModule, FormsModule]
 })
 export class BuscarTipoUsuarioComponent {
 
-  today:String;
+  today: String;
   tipoVehiculo: string;
-  vehiculosDiponibles: Vehiculo [];
-  alquiler:Alquiler = new Alquiler();
-  nav:NavInicioComponent = new NavInicioComponent();
+  vehiculosDiponibles: Vehiculo[] = [];
+  alquiler: Alquiler = new Alquiler();
+  nav: NavInicioComponent = new NavInicioComponent();
   startDate: string;
   endDate: string;
   placaVehiculo: string;
 
+  // VARIABLES DE PAGINACIÓN
+  currentPage: number = 1;
+  itemsPerPage: number = 5;  // Cantidad de vehículos por página
+  totalPages: number = 1;
 
-  constructor( private session:SessionserviceService, private vehiculiServicio:VehiculoService, private AlquilerService:AlquilerService) {
+  constructor(
+    private vehiculiServicio: VehiculoService,
+    private AlquilerService: AlquilerService
+  ) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
-   }
+  }
 
   ngOnInit(): void {
     this.nav.ocultar();
   }
 
-  public buscarVehiculosDisponibles(){
+  public buscarVehiculosDisponibles() {
     this.vehiculiServicio.getVehiculosDisponibles(this.tipoVehiculo).subscribe(
       (vehiculos) => {
         this.vehiculosDiponibles = vehiculos;
+        // Actualizamos paginación
+        this.totalPages = Math.ceil(this.vehiculosDiponibles.length / this.itemsPerPage);
+        this.currentPage = 1;
       }
     );
   }
 
-  public Alquilar(placa:string){
-    this.placaVehiculo=placa;
+  public Alquilar(placa: string) {
+    this.placaVehiculo = placa;
     console.log(placa);
     console.log(localStorage.getItem('userId'));
   }
 
   realizarAlquiler() {
-
-    const id= localStorage.getItem('userId');
+    const id = localStorage.getItem('userId');
     console.log(id)
     const formattedStartDate = this.formatDate(this.startDate);
     const formattedEndDate = this.formatDate(this.endDate);
 
-
     if (id) {
       this.AlquilerService.crearAlquiler(this.placaVehiculo, id, formattedStartDate, formattedEndDate).subscribe(
-        (data)=>{
-          if(data != null){ 
+        (data) => {
+          if (data != null) {
             this.alquiler = data;
             console.log(this.alquiler);
-            console.log("alquiler exitoso");
-
-          }else{
-            console.log("surgio un problema");
+            console.log("Alquiler exitoso");
+          } else {
+            console.log("Surgió un problema");
           }
         }
       );
     } else {
       console.error('User ID is null');
     }
-
   }
 
   actualizarFechaMinima() {
@@ -91,4 +96,25 @@ export class BuscarTipoUsuarioComponent {
     return format(new Date(date), 'MM/dd/yy'); // Convierte a MM/dd/yy
   }
 
+  // Métodos de paginación
+
+  get startIndex() {
+    return (this.currentPage - 1) * this.itemsPerPage;
+  }
+
+  get endIndex() {
+    return this.startIndex + this.itemsPerPage;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
 }
