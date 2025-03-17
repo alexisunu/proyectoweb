@@ -40,6 +40,7 @@ export class LoginUsuarioComponent implements OnInit {
           if (res) {
               console.log('Login correcto');
               this.nav.ocultar();
+              localStorage.setItem('userId', formData.username);
               // Redirigir al componente de administrador
               this.router.navigate(['/usuario']);
   
