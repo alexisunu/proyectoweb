@@ -1,6 +1,4 @@
-
 <app-nav-ususario></app-nav-ususario>
-
 
 <h1>Busqueda de Vehiculos disponibles</h1>
 
@@ -23,13 +21,13 @@
     <table class="vehiculos-table">
         <thead>
             <tr>
-                <th>placa</th>
-                <th>color</th>
+                <th>Placa</th>
+                <th>Color</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let vehiculo of vehiculosDiponibles" >
+            <tr *ngFor="let vehiculo of paginatedVehiculos">
                 <td>{{vehiculo.placa}}</td>
                 <td>{{vehiculo.color}}</td>
                 <td><button data-bs-toggle="modal" data-bs-target="#myModal" (click)="Alquilar(vehiculo.placa)">Alquilar</button></td>
@@ -38,6 +36,12 @@
     </table>
 </div>
 
+<!-- Controles de paginación -->
+<div class="pagination">
+  <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">Anterior</button>
+  <span>Página {{currentPage}} de {{totalPages}}</span>
+  <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Siguiente</button>
+</div>
 
 <!-- Modal para ingresar fechas del alquiler -->
 <div class="modal fade" id="myModal" >
@@ -53,34 +57,32 @@
         <br>
   
         <!-- Modal body -->
-       <!-- Campo para la fecha de inicio del alquiler -->
-<div class="mb-3" class="container">
-    <label for="startDate" class="form-label">Fecha de Inicio del Alquiler</label>
-    <input 
-      type="date" 
-      id="startDate" 
-      class="form-control" 
-      [(ngModel)]="startDate" 
-      [attr.min]="today" 
-      (change)="actualizarFechaMinima()"
-    >
-  </div>
+        <div class="mb-3 container">
+            <label for="startDate" class="form-label">Fecha de Inicio del Alquiler</label>
+            <input 
+              type="date" 
+              id="startDate" 
+              class="form-control" 
+              [(ngModel)]="startDate" 
+              [attr.min]="today" 
+              (change)="actualizarFechaMinima()"
+            >
+        </div>
 
-  <br>
+        <br>
   
-  <!-- Campo para la fecha de entrega del alquiler -->
-  <div class="mb-3" class="container">
-    <label for="endDate" class="form-label">Fecha de Entrega del Alquiler</label>
-    <input 
-      type="date" 
-      id="endDate" 
-      class="form-control" 
-      [(ngModel)]="endDate" 
-      [attr.min]="startDate"
-    >
-  </div>
-
-  <br>
+        <div class="mb-3 container">
+            <label for="endDate" class="form-label">Fecha de Entrega del Alquiler</label>
+            <input 
+              type="date" 
+              id="endDate" 
+              class="form-control" 
+              [(ngModel)]="endDate" 
+              [attr.min]="startDate"
+            >
+        </div>
+  
+        <br>
   
         <!-- Modal footer -->
         <div class="modal-footer">
@@ -91,5 +93,4 @@
       </div>
     </div>
   </div>
-  
 

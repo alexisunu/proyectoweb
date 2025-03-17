@@ -11,8 +11,6 @@ import { AlquilerService } from '../../../servicios/alquiler/alquiler.service';
 import { Alquiler } from '../../../entidades/alquiler/alquiler';
 import { jsPDF } from 'jspdf';
 
-
-
 @Component({
   selector: 'app-buscar-tipo-usuario',
   standalone: true,
@@ -22,86 +20,105 @@ import { jsPDF } from 'jspdf';
 })
 export class BuscarTipoUsuarioComponent {
 
-  today:String;
+  today: string;
   tipoVehiculo: string;
-  vehiculosDiponibles: Vehiculo [];
-  alquiler:Alquiler = new Alquiler();
-  nav:NavInicioComponent = new NavInicioComponent();
+  vehiculosDiponibles: Vehiculo[] = [];
+  alquiler: Alquiler = new Alquiler();
+  nav: NavInicioComponent = new NavInicioComponent();
   startDate: string;
   endDate: string;
   placaVehiculo: string;
 
+  // ================= PAGINACIÓN =================
+  currentPage: number = 1;
+  itemsPerPage: number = 5;
+  totalPages: number = 1;
+  // ==============================================
 
-  constructor( private session:SessionserviceService, private vehiculiServicio:VehiculoService, private AlquilerService:AlquilerService) {
+  constructor(
+    private session: SessionserviceService, 
+    private vehiculiServicio: VehiculoService, 
+    private AlquilerService: AlquilerService
+  ) {
     const todayDate = new Date();
     this.today = todayDate.toISOString().split('T')[0];
-   }
+  }
 
   ngOnInit(): void {
     this.nav.ocultar();
   }
 
-  public buscarVehiculosDisponibles(){
+  public buscarVehiculosDisponibles() {
     this.vehiculiServicio.getVehiculosDisponibles(this.tipoVehiculo).subscribe(
       (vehiculos) => {
         this.vehiculosDiponibles = vehiculos;
+        this.totalPages = Math.ceil(this.vehiculosDiponibles.length / this.itemsPerPage);
+        this.currentPage = 1;
       }
     );
   }
 
-  public Alquilar(placa:string){
-    this.placaVehiculo=placa;
+  // PAGINACIÓN
+  get paginatedVehiculos() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.vehiculosDiponibles.slice(start, end);
+  }
+
+  setPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
+  }
+  // FIN PAGINACIÓN
+
+  public Alquilar(placa: string) {
+    this.placaVehiculo = placa;
     console.log(placa);
     console.log(localStorage.getItem('userId'));
   }
 
   realizarAlquiler() {
-
-    const id= localStorage.getItem('userId');
-    console.log(id)
+    const id = localStorage.getItem('userId');
     const formattedStartDate = this.formatDate(this.startDate);
     const formattedEndDate = this.formatDate(this.endDate);
 
-
     if (id) {
       this.AlquilerService.crearAlquiler(this.placaVehiculo, id, formattedStartDate, formattedEndDate).subscribe(
-        (data)=>{
-          if(data != null){ 
+        (data) => {
+          if (data != null) {
             this.alquiler = data;
             console.log(this.alquiler);
             console.log("alquiler exitoso");
             this.generatePDF();
             window.location.reload();
-
-          }else{
-            console.log("surgio un problema");
+          } else {
+            console.log("surgió un problema");
           }
         }
       );
     } else {
       console.error('User ID is null');
     }
-
   }
 
   actualizarFechaMinima() {
     if (this.startDate) {
-      this.endDate = this.startDate; // La fecha de entrega no puede ser anterior a la de inicio
+      this.endDate = this.startDate;
     }
   }
 
   formatDate(date: string): string {
     if (!date) return '';
-    return format(new Date(date), 'MM/dd/yy'); // Convierte a MM/dd/yy
+    return format(new Date(date), 'MM/dd/yy');
   }
 
   generatePDF() {
     const doc = new jsPDF('p', 'mm', 'a4');
     let y = 15;
-  
-    // Título del PDF
+
     doc.setFontSize(20);
-    doc.setTextColor(0, 102, 204); // Azul
+    doc.setTextColor(0, 102, 204);
     const title = "Reporte de Alquiler MiCacharrito";
     const pageWidth = doc.internal.pageSize.getWidth();
     const textWidth = doc.getTextWidth(title);
@@ -109,12 +126,9 @@ export class BuscarTipoUsuarioComponent {
     doc.text(title, x, y);
     y += 10;
     doc.setLineWidth(0.5);
-    doc.line(10, y, 200, y); // Línea divisoria global
+    doc.line(10, y, 200, y);
     y += 10;
-  
-    // ==========================
-    // Sección 1: Información del Alquiler
-    // ==========================
+
     doc.setFontSize(16);
     doc.setTextColor(0, 102, 204);
     doc.text("Información del Alquiler", 10, y);
@@ -122,7 +136,7 @@ export class BuscarTipoUsuarioComponent {
     doc.setDrawColor(0, 102, 204);
     doc.line(10, y, 200, y);
     y += 8;
-  
+
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
     doc.text(`ID Alquiler: ${this.alquiler.idAlquiler || 'N/A'}`, 10, y);
@@ -136,10 +150,7 @@ export class BuscarTipoUsuarioComponent {
     y += 8;
     doc.text(`Estado del alquiler: ${this.alquiler.estado}`, 10, y);
     y += 15;
-  
-    // ==========================
-    // Sección 2: Información del Vehículo
-    // ==========================
+
     doc.setFontSize(16);
     doc.setTextColor(0, 102, 204);
     doc.text("Información del Vehículo", 10, y);
@@ -147,23 +158,19 @@ export class BuscarTipoUsuarioComponent {
     doc.setDrawColor(0, 102, 204);
     doc.line(10, y, 200, y);
     y += 8;
-  
+
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
     doc.text(`Placa del Vehículo: ${this.placaVehiculo}`, 10, y);
     y += 8;
     if (this.alquiler.idVehiculo) {
-      // Si el objeto alquiler tiene la información del vehículo, la mostramos.
       doc.text(`Tipo: ${this.alquiler.idVehiculo.tipoDeVehiculo}`, 10, y);
       y += 8;
       doc.text(`Color: ${this.alquiler.idVehiculo.color}`, 10, y);
       y += 8;
     }
     y += 7;
-  
-    // ==========================
-    // Sección 3: Información del Usuario
-    // ==========================
+
     doc.setFontSize(16);
     doc.setTextColor(0, 102, 204);
     doc.text("Información del Usuario", 10, y);
@@ -171,30 +178,26 @@ export class BuscarTipoUsuarioComponent {
     doc.setDrawColor(0, 102, 204);
     doc.line(10, y, 200, y);
     y += 8;
-  
+
     doc.setFontSize(12);
     doc.setTextColor(0, 0, 0);
-    // Aquí se asume que se guarda el usuario en localStorage con la clave 'userId'
     const userId = localStorage.getItem('userId');
     doc.text(`ID del usuario: ${userId || 'N/A'}`, 10, y);
-    y+=8;
+    y += 8;
     doc.text(`Nombre: ${this.alquiler.identificacion.nombreCompleto}`, 10, y);
-    y+=8;
+    y += 8;
     doc.text(`Correo: ${this.alquiler.identificacion.correo}`, 10, y);
-    y+=8;
+    y += 8;
     doc.text(`Teléfono: ${this.alquiler.identificacion.telefono}`, 10, y);
-    y+=8;
+    y += 8;
     doc.text(`Fecha de expedición de la licencia: ${this.alquiler.identificacion.fechaExpedicionLicencia}`, 10, y);
     y += 15;
-  
-    // Pie de página
+
     doc.setFontSize(10);
     doc.text("Gracias por su confianza.", 10, 280);
-  
-    // Descarga el PDF
+
     doc.save('alquiler.pdf');
   }
-  
-  
 
 }
+
