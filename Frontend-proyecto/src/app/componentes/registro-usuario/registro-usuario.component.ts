@@ -33,6 +33,9 @@ export class RegistroUsuarioComponent implements OnInit {
   registrarUsuario(){
     if(this.registroForm.valid){
       const usuario = this.registroForm.value;
+      const fechaInput = new Date(usuario.fechaExpedicionLicencia);
+      fechaInput.setMinutes(fechaInput.getMinutes() - fechaInput.getTimezoneOffset());
+      usuario.fechaExpedicionLicencia = fechaInput;
       this.usuarioService.registrarUsuario(
         usuario.Identificacion, 
         usuario.nombreCompleto,
