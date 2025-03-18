@@ -5,8 +5,10 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -76,7 +78,7 @@ public class ControladorAlquiler{
 				Date fechaInici = sdf.parse(fechaInicio);
 				Date fechaEntreg = sdf.parse(fechaEntrega);
 			    long diffInMillies = fechaEntreg.getTime() - fechaInici.getTime();
-			    long dias = diffInMillies / (1000 * 60 * 60 * 24);
+			    long dias = (diffInMillies / (1000 * 60 * 60 * 24))+1;
 			    
 			    String tipo = vehiculo.getTipoDeVehiculo();
 			    Precios precioTipo = repositorioP.findBytipoVehiculo(tipo);
@@ -183,6 +185,31 @@ public class ControladorAlquiler{
 			}
 			
 			
+		}
+		
+		@GetMapping("/obteneralquileres")
+		public List<Alquiler> obterneAlqileres (@RequestParam Long identificacion){
+			
+			Usuario usu = repositorioU.findById(identificacion).orElse(null);
+			
+			List<Alquiler> listaalquileres = repositorioA.findByIdentificacion(usu);
+			
+			List<Alquiler> listaAlquileresEnEspera = new ArrayList<>();
+
+			
+			for (int i = 0; i<listaalquileres.size();i++) {
+				
+				String estado = listaalquileres.get(i).getEstado();
+				
+				if(estado.equals("En espera")) {
+					
+					listaAlquileresEnEspera.add(listaalquileres.get(i));
+					
+				}
+				
+			}
+			
+			return listaAlquileresEnEspera;
 		}
 		
 		

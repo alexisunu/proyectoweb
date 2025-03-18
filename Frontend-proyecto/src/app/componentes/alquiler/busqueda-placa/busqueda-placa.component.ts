@@ -9,13 +9,11 @@ import { AlquilerService } from '../../../servicios/alquiler/alquiler.service';
 @Component({
   selector: 'app-busqueda-placa',
   standalone: true,
-  imports: [NavAdminComponent,FormsModule,CommonModule],
-  providers:[NavInicioComponent],
+  imports: [FormsModule,CommonModule],
   templateUrl: './busqueda-placa.component.html',
   styleUrl: './busqueda-placa.component.css'
 })
 export class BusquedaPlacaComponent implements OnInit {
-  nav:NavInicioComponent = new NavInicioComponent();
   placa: string;
   alquiler : Alquiler = new Alquiler();
 
@@ -26,7 +24,6 @@ export class BusquedaPlacaComponent implements OnInit {
   constructor(private alquilerService:AlquilerService) { }
   
   ngOnInit(): void {
-    this.nav.ocultar();
   }
 
   buscarAlquiler(){

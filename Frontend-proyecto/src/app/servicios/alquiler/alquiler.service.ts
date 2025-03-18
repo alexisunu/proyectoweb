@@ -24,6 +24,11 @@ export class AlquilerService {
     return this.httpClient.get<any>(`${this.url}/devolverVehiculo`, {params: {id}});
   }
 
+  obtenerAlquileres(identificacion:number):Observable<Alquiler[]>{
+    return this.httpClient.get<Alquiler[]>(`${this.url}/obteneralquileres`, {params: {identificacion}});
+  }
+
+
   deleteAlquiler(alquiler:Alquiler):Observable<boolean>{
     return this.httpClient.delete<boolean>(`${this.url}/borraralquiler`, { body: alquiler });
   }

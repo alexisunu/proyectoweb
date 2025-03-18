@@ -4,6 +4,7 @@ import { LoginadminService } from '../../servicios/loginadmin/loginadmin.service
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NavInicioComponent } from '../nav/nav-inicio/nav-inicio.component';
+import { SessionserviceService } from '../../servicios/sessionservice/sessionservice.service';
 
 @Component({
   selector: 'app-loginadmin',
@@ -15,10 +16,10 @@ import { NavInicioComponent } from '../nav/nav-inicio/nav-inicio.component';
 })
 export class LoginadminComponent implements OnInit {
 
-  nav: NavInicioComponent = new NavInicioComponent();
+  readonly roleuser = 'admin';
   loginForm: FormGroup;
 
-  constructor(private router:Router, private fb: FormBuilder,private loginadminServicio: LoginadminService) { }
+  constructor(private sessionService: SessionserviceService, private router:Router, private fb: FormBuilder,private loginadminServicio: LoginadminService) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -36,8 +37,7 @@ export class LoginadminComponent implements OnInit {
         console.log(res);
         if (res) {
             console.log('Login correcto');
-            this.nav.ocultar();
-            // Redirigir al componente de administrador
+            this.sessionService.setUserSession(formData.username, this.roleuser);
             this.router.navigate(['/admin']);
 
 

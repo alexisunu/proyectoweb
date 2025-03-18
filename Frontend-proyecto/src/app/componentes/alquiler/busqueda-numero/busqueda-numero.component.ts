@@ -9,15 +9,12 @@ import { AlquilerService } from '../../../servicios/alquiler/alquiler.service';
 @Component({
   selector: 'app-busqueda-numero',
   standalone: true,
-  imports: [NavAdminComponent,CommonModule,FormsModule],
-  providers:[NavInicioComponent],
+  imports: [CommonModule,FormsModule],
   templateUrl: './busqueda-numero.component.html',
   styleUrl: './busqueda-numero.component.css'
 })
 export class BusquedaNumeroComponent implements OnInit {
 
-
-  nav:NavInicioComponent = new NavInicioComponent();
   alquiler: Alquiler= new Alquiler();
   diasAdicionales: number;
   numero: number;
@@ -26,7 +23,6 @@ export class BusquedaNumeroComponent implements OnInit {
   constructor(private AlquilerSerivicio: AlquilerService) { }
 
   ngOnInit(): void {
-    this.nav.ocultar();
   }
 
   BuscarAlquiler() {

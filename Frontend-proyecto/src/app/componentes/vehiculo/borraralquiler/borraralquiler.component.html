@@ -1,10 +1,8 @@
-<p>borraralquiler works!</p>
-<app-nav-admin></app-nav-admin>
 
 <h1>Listado de Alquileres</h1>
 
 <div>
-  <table class="alquileres-table">
+  <table class="container">
     <thead>
       <tr>
         <th>ID Alquiler</th>
@@ -24,10 +22,10 @@
         <td>{{ alquiler.fechaEntrega }}</td>
         <td>{{ alquiler.fechaInicio }}</td>
         <td>{{ alquiler.valorAlquiler }}</td>
-        <td>{{ alquiler.idVehiculo }}</td>
-        <td>{{ alquiler.identificacion }}</td>
+        <td>{{ alquiler.idVehiculo.idVehiculo }}</td>
+        <td>{{ alquiler.identificacion.identificacion }}</td>
         <td>
-            <button (click)="borrarAlquiler(alquiler.idAlquiler)">Borrar</button>
+            <button (click)="borrarAlquiler(alquiler.idAlquiler)">Cancelar</button>
         </td>
       </tr>
     </tbody>

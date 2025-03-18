@@ -10,13 +10,14 @@ import { SessionserviceService } from '../../../servicios/sessionservice/session
 import { AlquilerService } from '../../../servicios/alquiler/alquiler.service';
 import { Alquiler } from '../../../entidades/alquiler/alquiler';
 import { jsPDF } from 'jspdf';
+import { NavegacionComponent } from "../../navegacion/navegacion.component";
 
 @Component({
   selector: 'app-buscar-tipo-usuario',
   standalone: true,
   templateUrl: './buscar-tipo-usuario.component.html',
   styleUrl: './buscar-tipo-usuario.component.css',
-  imports: [NavUsusarioComponent,CommonModule,FormsModule]
+  imports: [CommonModule, FormsModule, NavegacionComponent]
 })
 export class BuscarTipoUsuarioComponent {
 
@@ -45,7 +46,6 @@ export class BuscarTipoUsuarioComponent {
   }
 
   ngOnInit(): void {
-    this.nav.ocultar();
   }
 
   public buscarVehiculosDisponibles() {
