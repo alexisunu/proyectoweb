@@ -2,8 +2,12 @@ package com.example.demo.controlador;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +52,9 @@ public class ControladorAlquiler{
 		private Preciosrepositorio repositorioP;
 		
 		
+
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+		
 		@PostMapping("/crearalquiler")
 		public Alquiler crearAlquiler(@RequestParam String identificacion, 
 									 @RequestParam String placa,
@@ -66,7 +73,6 @@ public class ControladorAlquiler{
 			
 			if(usuario != null && vehiculo!= null) {
 				
-				SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
 				Date fechaInici = sdf.parse(fechaInicio);
 				Date fechaEntreg = sdf.parse(fechaEntrega);
 			    long diffInMillies = fechaEntreg.getTime() - fechaInici.getTime();
@@ -129,13 +135,34 @@ public class ControladorAlquiler{
 		}
 		
 		@GetMapping("/devolverVehiculo")
-		public Alquiler buscarId (@RequestParam Long id) {
+		public Map<String, Object> buscarId (@RequestParam Long id) throws ParseException {
 			
 			Alquiler alquilerEncontrado = this.repositorioA.findById(id).orElse(null);
 			
 			
 			if (alquilerEncontrado != null && alquilerEncontrado.getEstado().equals("Entregado")) {
-				return alquilerEncontrado;
+				
+				Map<String, Object> response = new HashMap<>();
+				String tipo = alquilerEncontrado.getIdVehiculo().getTipoDeVehiculo();
+				Precios precio = repositorioP.findBytipoVehiculo(tipo);
+				LocalDate fechaActual = LocalDate.now();
+				Date fechaHoy = Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());			
+				Long diasmm = fechaHoy.getTime() - alquilerEncontrado.getFechaEntrega().getTime();
+				Long dias = diasmm / (1000 * 60 * 60 * 24);
+				
+				
+				if(dias < 0 ) {
+					dias = 0L;
+				}
+				
+				Long totaldiasadicionales= (long) (dias*precio.getPrecio());
+				
+				
+				response.put("alquiler", alquilerEncontrado );
+				
+				response.put("diasadicionales", totaldiasadicionales);
+				
+				return response;
 			}
 					
 			return null;
