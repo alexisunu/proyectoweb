@@ -1,0 +1,33 @@
+
+<h1>Listado de Alquileres</h1>
+
+<div>
+  <table class="container">
+    <thead>
+      <tr>
+        <th>ID Alquiler</th>
+        <th>Estado</th>
+        <th>Fecha Entrega</th>
+        <th>Fecha Inicio</th>
+        <th>Valor Alquiler</th>
+        <th>ID Vehículo</th>
+        <th>Identificación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alquiler of alquileres">
+        <td>{{ alquiler.idAlquiler }}</td>
+        <td>{{ alquiler.estado }}</td>
+        <td>{{ alquiler.fechaEntrega }}</td>
+        <td>{{ alquiler.fechaInicio }}</td>
+        <td>{{ alquiler.valorAlquiler }}</td>
+        <td>{{ alquiler.idVehiculo.idVehiculo }}</td>
+        <td>{{ alquiler.identificacion.identificacion }}</td>
+        <td>
+            <button (click)="borrarAlquiler(alquiler.idAlquiler)">Cancelar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

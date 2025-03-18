@@ -1,0 +1,25 @@
+<div>
+
+    <nav id="navegador-admin" *ngIf="role === 'admin'">
+        <a href="/vehiculosAdmin">Buscar vehiculo Disponibles</a>
+        <a href="/AlquilerPlaca">Entregar vehiculo</a>
+        <a href="/AlquilerNumero">Devolucion del vehiculo</a>
+        <a href="" (click)="cerrarSesion()">cerrar Sesion</a>
+    
+    </nav>
+
+    <nav id="nav-inicio" *ngIf="role === 'public'">
+        <a href="">Inicio</a>
+        <a href="/registrousuario">Registrar Usuario</a>
+        <a href="/loginusuario">Iniciar sesion Usuario</a>
+        <a href="/loginadmin" id="nav-inicio" >Iniciar sesion administrador</a>
+        
+    </nav>
+
+    <nav id="navegador-usuario" *ngIf="role === 'usuario'">
+        <a href="/vehiculoUsuario">Buscar vehiculo Disponibles</a>
+        <a href="/borraralquiler">Cancelar Alquiler</a>
+        <a href="" (click)="cerrarSesion()">cerrar Sesion</a>
+    </nav>
+    
+</div>

@@ -1,9 +1,18 @@
 .container {
-    display: flex; /* Esto es opcional, ajusta según tus necesidades */
+    display: flex;
     justify-content: center; /* Centra horizontalmente el contenido */
-  }
-  
-  /* Estilo para el select */
+}
+
+table {
+    margin: 20px auto; /* Centra la tabla horizontalmente */
+    width: 80%; /* Haz la tabla más grande */
+}
+
+.pagination {
+    display: flex;
+    justify-content: center; /* Centra el div de la clase pagination */
+    margin-top: 20px; /* Añade un margen superior si es necesario */
+}
 select { 
     width: 300px; /* Ajusta el ancho según tus necesidades */
     padding: 8px;

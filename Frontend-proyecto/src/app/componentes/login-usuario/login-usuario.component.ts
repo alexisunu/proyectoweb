@@ -16,11 +16,12 @@ import { SessionserviceService } from '../../servicios/sessionservice/sessionser
 
 export class LoginUsuarioComponent implements OnInit {
 
+  readonly roleuser = 'usuario';
+
 
 
   constructor(private sessionService: SessionserviceService, private router:Router, private fb: FormBuilder, private loginUsuarioServicio:LoginUsuarioService) { }
 
-  nav: NavInicioComponent = new NavInicioComponent();
   loginForm: FormGroup;
 
     ngOnInit(): void {
@@ -39,12 +40,13 @@ export class LoginUsuarioComponent implements OnInit {
           console.log(res);
           if (res) {
               console.log('Login correcto');
-              this.nav.ocultar();
-              localStorage.setItem('userId', formData.username);
+              // Guardar la sesión del usuario
+              this.sessionService.setUserSession(formData.username, this.roleuser);
+              console.log(this.sessionService.getUserId());
+              console.log(this.sessionService.getUserRole());
               // Redirigir al componente de administrador
               this.router.navigate(['/usuario']);
-              this.sessionService.setUserId(formData.username);
-              console.log(this.sessionService.getUserId())
+              
   
   
           } else {

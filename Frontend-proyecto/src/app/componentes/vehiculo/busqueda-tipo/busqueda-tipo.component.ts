@@ -9,19 +9,16 @@ import { NavInicioComponent } from '../../nav/nav-inicio/nav-inicio.component';
 @Component({
   selector: 'app-busqueda-tipo',
   standalone: true,
-  imports: [CommonModule, FormsModule, NavAdminComponent],
-  providers:[NavInicioComponent],
+  imports: [CommonModule, FormsModule],
   templateUrl: './busqueda-tipo.component.html',
   styleUrl: './busqueda-tipo.component.css'
 })
 export class BusquedaTipoComponent implements OnInit {
   tipoVehiculo: string;
   vehiculosDiponibles: Vehiculo [];
-  nav:NavInicioComponent = new NavInicioComponent();
   constructor(private vehiculiServicio:VehiculoService) { }
 
   ngOnInit(): void {
-    this.nav.ocultar();
   }
 
   public buscarVehiculosDisponibles(){

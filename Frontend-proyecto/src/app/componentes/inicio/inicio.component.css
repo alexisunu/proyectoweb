@@ -1,90 +1,89 @@
 /* Estilos generales */
+.inicio {
+  font-size: 1.2em;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#venta h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.car-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.car {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.car:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.car img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.car button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.car button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #1a81e8;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
 body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-        color: #333;
-      }
-      
-      /* Estilos para párrafos */
-      p {
-        line-height: 1.6;
-        margin: 20px;
-      }
-      
-      /* Estilo especial para el párrafo de inicio */
-      .inicio {
-        font-size: 1.2rem;
-        text-align: center;
-        margin-top: 30px;
-        font-weight: bold;
-      }
-      
-      /* Sección de Coches en Venta */
-      #venta {
-        padding: 40px 20px;
-        background-color: #fff;
-      }
-      
-      #venta h2 {
-        text-align: center;
-        margin-bottom: 30px;
-        font-size: 2rem;
-        color: #2a2a2a;
-      }
-      
-      /* Grid de autos */
-      .car-grid {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 30px;
-        margin: 0 auto;
-        max-width: 1200px;
-      }
-      
-      /* Estilos individuales para cada auto */
-      .car {
-        background-color: #f1f1f1;
-        border-radius: 10px;
-        padding: 20px;
-        width: 300px;
-        text-align: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      
-      .car img {
-        width: 100%;
-        border-radius: 10px;
-      }
-      
-      .car h3 {
-        margin: 15px 0 10px;
-        font-size: 1.5rem;
-        color: #333;
-      }
-      
-      .car p {
-        font-size: 1rem;
-        color: #555;
-      }
-      
-      /* Estilos para el Footer */
-      footer {
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        padding: 20px;
-      }
-      
-      footer a {
-        color: #fff;
-        margin: 0 10px;
-        text-decoration: none;
-      }
-      
-      footer a img {
-        vertical-align: middle;
-      }
-      
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.inicio {
+  flex: 1;
+}
+ p {
+  text-align: center;
+}
+.social-links a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.social-links img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0.8;
+}
+
+.social-links img:hover {
+  transform: scale(1.2);
+  opacity: 1;
+}
