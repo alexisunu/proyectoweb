@@ -11,6 +11,7 @@ import { LoginUsuarioComponent } from './componentes/login-usuario/login-usuario
 import { UsuarioComponent } from './componentes/usuario/usuario.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { BuscarTipoUsuarioComponent } from './componentes/vehiculo/buscar-tipo-usuario/buscar-tipo-usuario.component';
+import { BusquedaEntregadosComponent } from './componentes/alquiler/busqueda-entregados/busqueda-entregados.component';
 
 export const routes: Routes = [
     {path:"loginadmin", component: LoginadminComponent},
@@ -23,5 +24,6 @@ export const routes: Routes = [
     {path:"loginusuario", component:LoginUsuarioComponent},
     {path:"usuario", component:UsuarioComponent},
     {path:"", component:InicioComponent},
-    {path:"borraralquiler", component: BorraralquilerComponent}
+    {path:"borraralquiler", component: BorraralquilerComponent},
+    {path:"buscaralquiler", component:BusquedaEntregadosComponent}
 ];

@@ -1,0 +1,34 @@
+<br>
+<h1>Alquileres Entregados</h1>
+<br>
+<br>
+<div>
+    <table class="container">
+        <thead>
+            <tr>
+                <th>ID Alquiler</th>
+                <th>identificacion</th>
+                <th>Nombre Cliente</th>
+                <th>telefono</th>
+                <th>placa del Vehiculo</th>
+                <th>Color del vehiculo</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Entrega</th> 
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let alquiler of alquileresEntregados" >
+                <td>{{alquiler.idAlquiler}}</td>
+                <td>{{alquiler.identificacion.identificacion}}</td>
+                <td>{{alquiler.identificacion.nombreCompleto}}</td>
+                <td>{{alquiler.identificacion.telefono}}</td>
+                <td>{{alquiler.idVehiculo.placa}}</td>
+                <td>{{alquiler.idVehiculo.color}}</td>
+                <td>{{alquiler.fechaInicio}}</td>
+                <td>{{alquiler.fechaEntrega}}</td>
+                <td>{{alquiler.valorAlquiler}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

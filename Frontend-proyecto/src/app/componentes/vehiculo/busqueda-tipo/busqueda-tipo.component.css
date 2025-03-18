@@ -1,9 +1,7 @@
-.container {
-    display: flex; /* Esto es opcional, ajusta según tus necesidades */
-    justify-content: center; /* Centra horizontalmente el contenido */
-  }
-  
-  /* Estilo para el select */
+
+
+
+    
 select { 
     width: 300px; /* Ajusta el ancho según tus necesidades */
     padding: 8px;
@@ -11,6 +9,8 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #f9f9f9;
+    display: block;
+    margin: 0 auto;
 }
 
 label {
@@ -26,6 +26,7 @@ table {
     margin: 20px 0;
     font-size: 18px;
     text-align: left;
+    margin: 20px auto; /* Centra la tabla horizontalmente */
 }
 
 th, td {

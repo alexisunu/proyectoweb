@@ -36,4 +36,7 @@ export class AlquilerService {
   crearAlquiler(placa:string, identificacion:string, fechaInicio:string, fechaEntrega:string):Observable<Alquiler>{
     return this.httpClient.post<Alquiler>(`${this.url}/crearalquiler`,null, { params: { identificacion, placa,  fechaInicio, fechaEntrega } });
   }
+  obtenerAlquileresEntregados():Observable<Alquiler[]>{
+    return this.httpClient.get<Alquiler[]>(`${this.url}/obteneralquileresentregados`);
+  }
 }

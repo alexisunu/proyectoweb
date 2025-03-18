@@ -3,8 +3,6 @@ import { VehiculoService } from '../../../servicios/vehiculo/vehiculo.service';
 import { Vehiculo } from '../../../entidades/vehiculo/vehiculo';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NavAdminComponent } from "../../nav/nav-admin/nav-admin.component";
-import { NavInicioComponent } from '../../nav/nav-inicio/nav-inicio.component';
 
 @Component({
   selector: 'app-busqueda-tipo',

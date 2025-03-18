@@ -212,5 +212,30 @@ public class ControladorAlquiler{
 			return listaAlquileresEnEspera;
 		}
 		
+		@GetMapping("/obteneralquileresentregados")
+		public List<Alquiler> obtenerAlquileresEntregados(){
+			
+			List<Alquiler> listaAlquileresEntregados= new ArrayList<>();
+			
+			List<Alquiler> listaalquileres = repositorioA.findAll();
+			
+			for (int i = 0; i<listaalquileres.size();i++) {
+				
+				String estado = listaalquileres.get(i).getEstado();
+				
+				if(estado.equals("Entregado")) {
+					
+					listaAlquileresEntregados.add(listaalquileres.get(i));
+					
+				}
+				
+			}
+			
+			
+			return listaAlquileresEntregados;
+		}
+			
+		
+		
 		
 }

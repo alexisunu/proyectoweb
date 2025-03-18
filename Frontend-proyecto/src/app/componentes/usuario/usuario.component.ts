@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../entidades/usuario/usuario';
 import { UsuarioService } from '../../servicios/usuario/usuario.service';
-import { NavUsusarioComponent } from "../nav/nav-ususario/nav-ususario.component";
 import { RouterOutlet } from '@angular/router';
 import { NavegacionComponent } from "../navegacion/navegacion.component";
 import { SessionserviceService } from '../../servicios/sessionservice/sessionservice.service';
