@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Alquiler } from '../../../entidades/alquiler/alquiler';
 import { AlquilerService } from '../../../servicios/alquiler/alquiler.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-busqueda-numero',
@@ -28,8 +29,13 @@ export class BusquedaNumeroComponent implements OnInit {
     this.diasAdicionales = 0;
     this.total = 0;
     console.log(this.numero);
+    if (this.numero == undefined) {
+      alert("Ingrese un numero de alquiler");
+      return
+    }
     this.AlquilerSerivicio.getAlquiler(this.numero).subscribe(
       (result) => {
+        console.log(result);
         if(result != null){
         this.alquiler = result.alquiler;
         this.diasAdicionales = result.diasadicionales;
@@ -39,7 +45,10 @@ export class BusquedaNumeroComponent implements OnInit {
           alert("No se encontro el alquiler");
         }
         
-      });
+      }, error => {
+          alert("Error al buscar el alquiler");
+        }
+    );
   }
 
   devolverVehiculo() {
