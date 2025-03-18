@@ -19,8 +19,10 @@ export class BusquedaNumeroComponent implements OnInit {
 
   nav:NavInicioComponent = new NavInicioComponent();
   alquiler: Alquiler= new Alquiler();
-  diasAdicionales: String;
+  diasAdicionales: number;
   numero: number;
+  total:number;
+
   constructor(private AlquilerSerivicio: AlquilerService) { }
 
   ngOnInit(): void {
@@ -31,9 +33,11 @@ export class BusquedaNumeroComponent implements OnInit {
     console.log(this.numero);
     this.AlquilerSerivicio.getAlquiler(this.numero).subscribe(
       (result) => {
-
         if(result != null){
-        this.alquiler = result;
+        this.alquiler = result.alquiler;
+        this.diasAdicionales = result.diasadicionales;
+        this.total = this.diasAdicionales + this.alquiler.valorAlquiler;
+
         }else{
           alert("No se encontro el alquiler");
         }
@@ -53,4 +57,6 @@ export class BusquedaNumeroComponent implements OnInit {
       }
     })
   }
+
+
 }
