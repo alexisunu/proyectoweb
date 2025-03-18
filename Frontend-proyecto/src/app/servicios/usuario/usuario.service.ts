@@ -16,7 +16,7 @@ export class UsuarioService {
   registrarUsuario(
     identificacion: number, 
     nombreCompleto: string, 
-    fechaExpedicionLicencia: string,
+    fechaExpedicionLicencia: Date,
     categoriaLicencia: string, 
     vigenciaLicencia: string, 
     correo: string, 

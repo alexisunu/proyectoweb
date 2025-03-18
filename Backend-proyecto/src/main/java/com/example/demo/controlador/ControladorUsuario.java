@@ -31,10 +31,6 @@ public class ControladorUsuario {
 	        @RequestBody Usuario usuario, 
 	        @RequestParam String password) throws ParseException {
 
-	    // Si necesitas convertir la fecha, asegúrate de que el objeto Usuario tenga el campo adecuado o haz la conversión aquí
-	    //SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-	    //Date fechaExpedicion = formato.parse(usuario.getFechaExpedicionLicencia());
-	    //usuario.setFechaExpedicionLicencia(fechaExpedicion);
 
 	    // Guarda el usuario
 	    repositorioU.save(usuario);

@@ -24,6 +24,9 @@ export class BusquedaNumeroComponent implements OnInit {
   }
 
   BuscarAlquiler() {
+    this.alquiler = new Alquiler();
+    this.diasAdicionales = 0;
+    this.total = 0;
     console.log(this.numero);
     this.AlquilerSerivicio.getAlquiler(this.numero).subscribe(
       (result) => {
