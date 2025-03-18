@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginUsuarioService } from '../../servicios/loginUsuario/login-usuario.service';
-import { NavInicioComponent } from '../nav/nav-inicio/nav-inicio.component';
+
 import { SessionserviceService } from '../../servicios/sessionservice/sessionservice.service';
 
 @Component({
@@ -45,7 +45,7 @@ export class LoginUsuarioComponent implements OnInit {
               console.log(this.sessionService.getUserId());
               console.log(this.sessionService.getUserRole());
               // Redirigir al componente de administrador
-              this.router.navigate(['/usuario']);
+              this.router.navigate(['/vehiculoUsuario']);
               
   
   

@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NavAdminComponent } from "../../nav/nav-admin/nav-admin.component";
-import { NavInicioComponent } from '../../nav/nav-inicio/nav-inicio.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Alquiler } from '../../../entidades/alquiler/alquiler';

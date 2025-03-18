@@ -3,14 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { LoginadminService } from '../../servicios/loginadmin/loginadmin.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NavInicioComponent } from '../nav/nav-inicio/nav-inicio.component';
 import { SessionserviceService } from '../../servicios/sessionservice/sessionservice.service';
 
 @Component({
   selector: 'app-loginadmin',
   standalone: true,
   imports: [CommonModule,ReactiveFormsModule],
-  providers: [NavInicioComponent],
   templateUrl: './loginadmin.component.html',
   styleUrl: './loginadmin.component.css'
 })
@@ -38,7 +36,7 @@ export class LoginadminComponent implements OnInit {
         if (res) {
             console.log('Login correcto');
             this.sessionService.setUserSession(formData.username, this.roleuser);
-            this.router.navigate(['/admin']);
+            this.router.navigate(['/buscaralquiler']);
 
 
         } else {

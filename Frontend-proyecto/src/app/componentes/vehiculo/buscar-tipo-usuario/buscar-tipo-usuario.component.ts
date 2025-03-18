@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import {format} from 'date-fns';
-import { NavUsusarioComponent } from '../../nav/nav-ususario/nav-ususario.component';
 import { CommonModule } from '@angular/common';
 import { Vehiculo } from '../../../entidades/vehiculo/vehiculo';
-import { NavInicioComponent } from '../../nav/nav-inicio/nav-inicio.component';
 import { VehiculoService } from '../../../servicios/vehiculo/vehiculo.service';
 import { FormsModule } from '@angular/forms';
 import { SessionserviceService } from '../../../servicios/sessionservice/sessionservice.service';
@@ -17,7 +15,7 @@ import { NavegacionComponent } from "../../navegacion/navegacion.component";
   standalone: true,
   templateUrl: './buscar-tipo-usuario.component.html',
   styleUrl: './buscar-tipo-usuario.component.css',
-  imports: [CommonModule, FormsModule, NavegacionComponent]
+  imports: [CommonModule, FormsModule]
 })
 export class BuscarTipoUsuarioComponent {
 
@@ -25,7 +23,6 @@ export class BuscarTipoUsuarioComponent {
   tipoVehiculo: string;
   vehiculosDiponibles: Vehiculo[] = [];
   alquiler: Alquiler = new Alquiler();
-  nav: NavInicioComponent = new NavInicioComponent();
   startDate: string;
   endDate: string;
   placaVehiculo: string;
