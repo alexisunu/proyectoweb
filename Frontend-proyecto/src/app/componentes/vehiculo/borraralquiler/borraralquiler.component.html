@@ -1,0 +1,35 @@
+<p>borraralquiler works!</p>
+<app-nav-admin></app-nav-admin>
+
+<h1>Listado de Alquileres</h1>
+
+<div>
+  <table class="alquileres-table">
+    <thead>
+      <tr>
+        <th>ID Alquiler</th>
+        <th>Estado</th>
+        <th>Fecha Entrega</th>
+        <th>Fecha Inicio</th>
+        <th>Valor Alquiler</th>
+        <th>ID Vehículo</th>
+        <th>Identificación</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let alquiler of alquileres">
+        <td>{{ alquiler.idAlquiler }}</td>
+        <td>{{ alquiler.estado }}</td>
+        <td>{{ alquiler.fechaEntrega }}</td>
+        <td>{{ alquiler.fechaInicio }}</td>
+        <td>{{ alquiler.valorAlquiler }}</td>
+        <td>{{ alquiler.idVehiculo }}</td>
+        <td>{{ alquiler.identificacion }}</td>
+        <td>
+            <button (click)="borrarAlquiler(alquiler.idAlquiler)">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

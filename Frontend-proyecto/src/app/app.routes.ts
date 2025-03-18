@@ -1,3 +1,4 @@
+import { BorraralquilerComponent } from './componentes/vehiculo/borraralquiler/borraralquiler.component';
 import { Routes } from '@angular/router';
 import { LoginadminComponent } from './componentes/loginadmin/loginadmin.component';
 import { BusquedaTipoComponent } from './componentes/vehiculo/busqueda-tipo/busqueda-tipo.component';
@@ -21,5 +22,6 @@ export const routes: Routes = [
     {path:"registrousuario", component:RegistroUsuarioComponent},
     {path:"loginusuario", component:LoginUsuarioComponent},
     {path:"usuario", component:UsuarioComponent},
-    {path:"inicio", component:InicioComponent}
+    {path:"inicio", component:InicioComponent},
+    {path:"borraralquiler", component: BorraralquilerComponent}
 ];
